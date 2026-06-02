@@ -1,0 +1,26 @@
+/* Obsidian-style wikilink and embed styling */
+.wikilink {
+  text-decoration: none;
+  border-bottom: 1px solid var(--sl-color-accent, #4ea1ff);
+}
+.wikilink:hover {
+  border-bottom-color: var(--sl-color-accent-high, #8cc6ff);
+}
+
+.wikilink-broken {
+  color: #ff3860;
+  border-bottom: 1px dashed #ff3860;
+  cursor: help;
+  font-style: normal;
+}
+
+.wiki-embed {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+.wiki-embed-missing {
+  opacity: 0.7;
+  border: 1px dashed #ff3860;
+  padding: 4px;
+}
