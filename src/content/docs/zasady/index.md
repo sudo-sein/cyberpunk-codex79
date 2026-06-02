@@ -1,5 +1,5 @@
 ---
-title: Zmiany zasad
+title: Zasady Homebrew
 description: Zbiorcze zmiany i uproszczenia zasad Cyberpunk RED — co wylatuje, rzut poniżej STAT, loteria ciał, nowy Tarot i konsolidacja Bijatyki.
 ---
 
