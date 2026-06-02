@@ -2,7 +2,9 @@
 title: X-Ray
 ---
 
-![[x_ray.jpg|400]]
+![[x_ray.jpg|300]]
+
+<!--Malena Rosskov -->
 
 X-Ray to była cyberpsycho i była ripperka Maelstromu. Wyszła z gangu 2 lata temu po śmierci jednego z członków, ale nikt rozsądny nie mówi, że po prostu „wyzdrowiała”. Raczej nauczyła się funkcjonować w rytmie, który trzyma ją bliżej ludzi niż hałasu w głowie.
 

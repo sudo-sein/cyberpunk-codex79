@@ -1,7 +1,7 @@
 ---
 title: Bernadette
 ---
-![[burnice-1.jpg|300]]
+![[bernadette.jpg|300]]
 
 
 **Rocker 4**

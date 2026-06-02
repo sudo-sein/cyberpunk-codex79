@@ -5,8 +5,8 @@ description: Neutralny, profesjonalny bar dla najemników, szary beton, dyskretn
 
 Neutralny, profesjonalny bar dla najemników, szary beton, dyskretne boksy, zero pytań. Prowadzi go "Specter", ale nikt nic o nim nie wie.
 
-- Specter - Fixer i właściciel
-- Jane Doe - Solo i bouncer
-- Burnice - barmanka i rocker
-- Malena Rosskov - ripperdoc, były maelstrom 
-- Old Man Jack - Nomad
+- [[Specter]] - Fixer i właściciel
+- [[Jane Doe]] - Solo i bouncer
+- [[Bernadette]] - barmanka i rocker
+- [[X-Ray]] - ripperdoc, były maelstrom 
+- [[Old Man Jack]] - Nomad
