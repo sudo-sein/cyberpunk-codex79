@@ -25,6 +25,14 @@ describe("buildVaultIndex", () => {
     expect(index.get("custom")).toBe("/zasady/custom-override");
   });
 
+  it("maps a trailing index file to its parent dir", () => {
+    expect(index.get("spis")).toBe("/zasady");
+  });
+
+  it("preserves a non-trailing index folder segment", () => {
+    expect(index.get("intro")).toBe("/index/intro");
+  });
+
   it("returns an empty map for a missing directory", () => {
     expect(buildVaultIndex(join(DOCS, "does-not-exist")).size).toBe(0);
   });

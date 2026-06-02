@@ -31,9 +31,10 @@ function computeSlug(relPath: string, frontmatterSlug?: string): string {
   const segments = relPath
     .replace(MARKDOWN_EXT, "")
     .split(sep)
-    .filter((s) => s && s.toLowerCase() !== "index")
+    .filter(Boolean)
     .map((s) => githubSlug(s));
-  return "/" + segments.join("/");
+  const slug = ("/" + segments.join("/")).replace(/\/index$/, "");
+  return slug === "" ? "/" : slug;
 }
 
 /** Pure, testable build of the target -> "/slug" map for a docs directory. */
