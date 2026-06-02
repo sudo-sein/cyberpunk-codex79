@@ -1,40 +1,49 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
-template: splash # Remove or comment out this line to display the site sidebar on this page.
+title: Cyberpunk Codex
+description: Zbiór homebrew zasad i materiałów do kampanii Cyberpunk RED w Night City.
+template: splash
 hero:
-  tagline: Congrats on setting up a new Starlight project!
-  image:
-    file: ../../assets/houston.webp
+  tagline: Homebrew zasady, mechaniki i materiały do kampanii Cyberpunk RED. Witaj w Night City, choomba.
   actions:
-    - text: Example Guide
-      link: /guides/example/
+    - text: Przeglądaj zasady
+      link: /zasady/zasady/
       icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
-      icon: external
+      variant: primary
+    - text: Tarot przeznaczenia
+      link: /zasady/tarot-przeznaczenia/
+      icon: open-book
       variant: minimal
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## Next steps
+## Czym jest Codex?
 
-<CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
+**Cyberpunk Codex** to żywa kolekcja domowych zasad (homebrew) i materiałów rozszerzających system **Cyberpunk RED**. Znajdziesz tu przebudowane mechaniki, opcjonalne podsystemy i narzędzia, które dosypują trochę chromu i neonów do rozgrywki przy stole.
+
+<CardGrid>
+	<Card title="Netrunning 2.0" icon="laptop">
+		Przebudowane zasady włamań — dostęp bezpośredni i zdalny, eskalacja
+		uprawnień oraz wektory ataku. [Czytaj więcej](/zasady/netrunning-v20/).
 	</Card>
-	<Card title="Change page layout" icon="document">
-		Delete `template: splash` in `src/content/docs/index.mdx` to display a
-		sidebar on this page.
+	<Card title="Tarot przeznaczenia" icon="random">
+		Cyfrowy artefakt CHIRON-a — Wielkie Arkana, które odmienią los postaci po
+		podwójnej dziesiątce. [Czytaj więcej](/zasady/tarot-przeznaczenia/).
 	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
+	<Card title="Negocjacje" icon="comment">
+		Strukturalny system negocjacji jako mini-encounter, inspirowany Draw Steel.
+		[Czytaj więcej](/zasady/negocjacje/).
 	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
+	<Card title="Cyberpsychoza" icon="heart">
+		Człowieczeństwo, zaburzenia dysocjacyjne i sposoby na utrzymanie się na
+		powierzchni. [Czytaj więcej](/zasady/cyberpsychoza/).
 	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
+	<Card title="Balanga" icon="star">
+		Idź w tango — zdobywaj PD i odzyskuj Człowieczeństwo na legendarnym
+		chlaniu. [Czytaj więcej](/zasady/balanga/).
+	</Card>
+	<Card title="Relacje w ekipie" icon="seti:plan">
+		Tabela więzi między postaciami graczy — zbuduj wspólną historię na 2d6.
+		[Czytaj więcej](/zasady/tabela-relacji-pc/).
 	</Card>
 </CardGrid>
