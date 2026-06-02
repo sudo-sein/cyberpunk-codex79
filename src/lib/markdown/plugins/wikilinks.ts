@@ -35,12 +35,10 @@ export function remarkWikilinks(options: WikilinksOptions = {}) {
 
         if (url) {
           children.push({
-            type: "emphasis", // known to-hast handler; tag/attrs overridden below
+            type: "link",
+            url,
             children: [{ type: "text", value: label }],
-            data: {
-              hName: "a",
-              hProperties: { className: ["wikilink"], href: url },
-            },
+            data: { hProperties: { className: ["wikilink"] } },
           });
         } else {
           children.push({

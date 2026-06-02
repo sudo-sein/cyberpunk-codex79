@@ -12,12 +12,17 @@ const run = (md: string) =>
 describe("remarkWikilinks", () => {
   it("renders a resolved wikilink as an anchor with class", async () => {
     const html = await run("Zobacz [[Cyberpsychoza]] tutaj.");
-    expect(html).toContain('<a class="wikilink" href="/zasady/cyberpsychoza">Cyberpsychoza</a>');
+    expect(html).toContain('<a');
+    expect(html).toContain('href="/zasady/cyberpsychoza"');
+    expect(html).toContain('class="wikilink"');
+    expect(html).toContain(">Cyberpsychoza</a>");
   });
 
   it("uses the display label after the pipe", async () => {
     const html = await run("[[Cyberpsychoza|psychoza]]");
-    expect(html).toContain('<a class="wikilink" href="/zasady/cyberpsychoza">psychoza</a>');
+    expect(html).toContain('href="/zasady/cyberpsychoza"');
+    expect(html).toContain('class="wikilink"');
+    expect(html).toContain(">psychoza</a>");
   });
 
   it("renders an unresolved wikilink as a broken span", async () => {
