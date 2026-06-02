@@ -72,10 +72,23 @@ Plugin order: `wikilinks` → `wiki-embeds` → `strip-comments`.
 ### `src/lib/markdown/plugins/wiki-embeds.ts` (rewrite)
 
 - Regex `!\[\[([^\]]+?)\]\]/g`.
-- Image targets (`.png|.jpg|.jpeg|.gif|.svg|.webp|.avif|.bmp`) → mdast `image` node:
-  `url: "/" + target` (served from `public/`), `alt: target`,
-  `data.hProperties.className = ["wiki-embed"]`.
+- Image targets (`.png|.jpg|.jpeg|.gif|.svg|.webp|.avif|.bmp`) → mdast `image` node.
+- Images live in `public/media/`, served at `/media/<target>` (Astro strips `public/` from
+  the URL).
+- **Existence check (build time):** if `public/media/<target>` exists →
+  `url: "/media/" + target`, `data.hProperties.className = ["wiki-embed"]`.
+- If the file does **not** exist → use the placeholder asset
+  `url: "/media/placeholder.svg"`, `alt: target`,
+  `data.hProperties.className = ["wiki-embed", "wiki-embed-missing"]`. The original target is
+  kept in `alt` and a `title` so the intended file is still discoverable.
+- `alt` is always set to the original `target`.
 - Non-image embeds ignored (current behaviour).
+
+### `public/media/placeholder.svg` (new)
+
+- A simple static placeholder image shown for embeds whose target file is missing
+  (e.g. a "missing image" / broken-frame graphic). Kept in the same `public/media/` folder so
+  it serves at `/media/placeholder.svg`.
 
 ### `src/lib/markdown/plugins/strip-comments.ts` (keep)
 
@@ -85,7 +98,7 @@ Plugin order: `wikilinks` → `wiki-embeds` → `strip-comments`.
 ### `src/styles/wiki.css` (new)
 
 - `.wikilink`, `.wikilink-broken` (dashed red underline, `cursor: help`), `.wiki-embed`
-  (responsive max-width).
+  (responsive max-width), `.wiki-embed-missing` (muted/dashed styling to signal a placeholder).
 - Registered via Starlight `customCss`.
 
 ### `astro.config.mjs` (edit)
@@ -112,6 +125,8 @@ once at module load and shared across all files.
 - Built HTML spot-checks:
   - `[[Cyberpsychoza]]` → `<a href="/zasady/cyberpsychoza" class="wikilink">Cyberpsychoza</a>`
   - `[[Lifepath generator|Lifepath]]` → `<span class="wikilink-broken">Lifepath</span>`
+  - `![[exists.png]]` (file present in `public/media/`) → `<img src="/media/exists.png" class="wiki-embed">`
+  - `![[ghost.png]]` (file absent) → `<img src="/media/placeholder.svg" alt="ghost.png" class="wiki-embed wiki-embed-missing">`
 - `npm run dev` visual check on `Zasady` and `Tabela Relacji PC` pages: valid link navigates,
   broken link shows dashed styling and is not clickable.
 
