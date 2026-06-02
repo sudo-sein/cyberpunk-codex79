@@ -3,7 +3,6 @@ title: Tabela Relacji PC
 description: Tabela losowania więzi między postaciami graczy na 2d6 — buduje wspólną historię ekipy bez antagonizowania graczy.
 ---
 
-# Tabela Relacji między Postaciami Graczy
 
 > [!info] Mechanika
 > Każdy gracz rzuca **2d6** — pierwszy rzut (1d6) wyznacza **kategorię**, drugi rzut (1d6) wyznacza **szczegół relacji** z postacią gracza siedzącego po jego prawej. Procedura idzie dookoła stołu, aż każdy PC ma co najmniej jedną więź. Gracze powinni wspólnie doprecyzować szczegóły wylosowanej relacji.

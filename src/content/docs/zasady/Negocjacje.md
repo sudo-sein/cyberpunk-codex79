@@ -3,8 +3,6 @@ title: Negocjacje
 description: Opcjonalny system negocjacji jako strukturalny mini-encounter — statystyki BN, Zainteresowanie, Cierpliwość i rundy argumentów. Inspirowany Draw Steel.
 ---
 
-# Negocjacje
-
 **Zasady opcjonalne dla Cyberpunk RED**
 *Mechanika zainspirowana systemem Draw Steel (MCDM Productions), zaadaptowana na Cyberpunk RED.*
 

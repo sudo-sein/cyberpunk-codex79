@@ -2,7 +2,6 @@
 title: Wprowadzenie
 description: Jesteście krawędziażami - najemnikami na zlecenie - którzy się kręcą czekając na robotę w barze Black Box w Charter Hill
 ---
-# Wprowadzenie
 
 ## Gdzie zaczynamy
 
