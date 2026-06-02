@@ -1,74 +1,69 @@
 import { visit } from "unist-util-visit";
 import type { Root, Text } from "mdast";
-import type { VaultIndex, IndexNode } from "../../types";
+import { getVaultIndex } from "../vault-index";
 
 interface WikilinksOptions {
-  index: VaultIndex;
+  /** Override the lookup map (used in tests). Defaults to the real vault index. */
+  index?: Map<string, string>;
 }
 
 const WIKILINK_REGEX = /(?<!!)\[\[([^\]|]+?)(?:\|([^\]]+?))?\]\]/g;
 
-export function remarkWikilinks(options: WikilinksOptions) {
-  const slugMap = buildSlugMap(options.index.tree);
-
+export function remarkWikilinks(options: WikilinksOptions = {}) {
   return (tree: Root) => {
-    visit(tree, "text", (node: Text, index, parent) => {
-      if (!parent || typeof index !== "number") return;
+    const index = options.index ?? getVaultIndex();
 
+    visit(tree, "text", (node: Text, i, parent) => {
+      if (!parent || typeof i !== "number") return;
       const value = node.value;
       if (!value.includes("[[")) return;
 
       const children: any[] = [];
       let lastIndex = 0;
+      WIKILINK_REGEX.lastIndex = 0;
 
       for (const match of value.matchAll(WIKILINK_REGEX)) {
         const [full, target, display] = match;
-        const matchIndex = match.index!;
-
-        if (matchIndex > lastIndex) {
-          children.push({ type: "text", value: value.slice(lastIndex, matchIndex) });
+        const start = match.index!;
+        if (start > lastIndex) {
+          children.push({ type: "text", value: value.slice(lastIndex, start) });
         }
 
-        const slug = slugMap.get(target.trim().toLowerCase());
+        const key = target.trim().toLowerCase();
         const label = display?.trim() || target.trim();
+        const url = index.get(key);
 
-        children.push({
-          type: "html",
-          value: slug
-            ? `<a href="/${slug}" class="wikilink">${label}</a>`
-            : `<a class="wikilink-broken">${label}</a>`,
-        });
+        if (url) {
+          children.push({
+            type: "link",
+            url,
+            children: [{ type: "text", value: label }],
+            data: { hProperties: { className: ["wikilink"] } },
+          });
+        } else {
+          children.push({
+            type: "emphasis", // known to-hast handler; tag/attrs overridden below
+            children: [{ type: "text", value: label }],
+            data: {
+              hName: "span",
+              hProperties: {
+                className: ["wikilink-broken"],
+                title: `Brak strony: ${target.trim()}`,
+              },
+            },
+          });
+        }
 
-        lastIndex = matchIndex + full.length;
+        lastIndex = start + full.length;
       }
 
       if (children.length === 0) return;
-
       if (lastIndex < value.length) {
         children.push({ type: "text", value: value.slice(lastIndex) });
       }
 
-      parent.children.splice(index, 1, ...children);
-      return index + children.length;
+      parent.children.splice(i, 1, ...children);
+      return i + children.length;
     });
   };
-}
-
-function buildSlugMap(nodes: IndexNode[]): Map<string, string> {
-  const map = new Map<string, string>();
-
-  function walk(nodes: IndexNode[]) {
-    for (const node of nodes) {
-      if (node.type === "file" && node.slug) {
-        map.set(node.name.toLowerCase(), node.slug);
-        if (node.title) {
-          map.set(node.title.toLowerCase(), node.slug);
-        }
-      }
-      if (node.children) walk(node.children);
-    }
-  }
-
-  walk(nodes);
-  return map;
 }
